@@ -95,17 +95,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Check if image does not already exist
-        run: |
-          # Source: https://stackoverflow.com/a/39731444/3593896
-          function docker_tag_exists() {
-            curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
-          }
+      # - name: Check if image does not already exist
+      #   run: |
+      #     # Source: https://stackoverflow.com/a/39731444/3593896
+      #     function docker_tag_exists() {
+      #       curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
+      #     }
 
-          if docker_tag_exists shaunfong/editor ubuntu-${{ github.event.inputs.editorVersion }}-${{ matrix.targetPlatform }}-${{ github.event.inputs.repoVersionFull }} ; then
-            echo "Image already exists. Exiting."
-            exit 1
-          fi
+      #     if docker_tag_exists shaunfong/editor ubuntu-${{ github.event.inputs.editorVersion }}-${{ matrix.targetPlatform }}-${{ github.event.inputs.repoVersionFull }} ; then
+      #       echo "Image already exists. Exiting."
+      #       exit 1
+      #     fi
       #######################
       #   Free disk space   #
       #######################
@@ -115,9 +115,9 @@ jobs:
       #   Pull previous images   #
       ############################
       - name: Pull base image (must exist)
-        run: docker pull shaunfong/base:${{ github.event.inputs.repoVersionFull }}
+        run: docker pull gameci/base:${{ github.event.inputs.repoVersionFull }}
       - name: Pull hub image (must exist)
-        run: docker pull shaunfong/hub:${{ github.event.inputs.repoVersionFull }}
+        run: docker pull gameci/hub:${{ github.event.inputs.repoVersionFull }}
       ###########################
       #   Ubuntu Editor image   #
       ###########################
@@ -128,8 +128,8 @@ jobs:
         with:
           file: ./images/ubuntu/editor/Dockerfile
           build-args: |
-            hubImage=shaunfong/hub:${{ github.event.inputs.repoVersionFull }}
-            baseImage=shaunfong/base:${{ github.event.inputs.repoVersionFull }}
+            hubImage=gameci/hub:${{ github.event.inputs.repoVersionFull }}
+            baseImage=gameci/base:${{ github.event.inputs.repoVersionFull }}
             version=${{ github.event.inputs.editorVersion }}
             changeSet=${{ github.event.inputs.changeSet }}
             module=${{ matrix.targetPlatform }}
@@ -155,8 +155,8 @@ jobs:
         with:
           file: ./images/ubuntu/editor/Dockerfile
           build-args: |
-            hubImage=shaunfong/hub:${{ github.event.inputs.repoVersionFull }}
-            baseImage=shaunfong/base:${{ github.event.inputs.repoVersionFull }}
+            hubImage=gameci/hub:${{ github.event.inputs.repoVersionFull }}
+            baseImage=gameci/base:${{ github.event.inputs.repoVersionFull }}
             version=${{ github.event.inputs.editorVersion }}
             changeSet=${{ github.event.inputs.changeSet }}
             module=${{ matrix.targetPlatform }}
