@@ -115,9 +115,9 @@ jobs:
       #   Pull previous images   #
       ############################
       - name: Pull base image (must exist)
-        run: docker pull gameci/base:${{ github.event.inputs.repoVersionFull }}
+        run: docker pull gameci/base:ubuntu-${{ github.event.inputs.repoVersionFull }}
       - name: Pull hub image (must exist)
-        run: docker pull gameci/hub:${{ github.event.inputs.repoVersionFull }}
+        run: docker pull gameci/hub:ubuntu-${{ github.event.inputs.repoVersionFull }}
       ###########################
       #   Ubuntu Editor image   #
       ###########################
@@ -128,8 +128,8 @@ jobs:
         with:
           file: ./images/ubuntu/editor/Dockerfile
           build-args: |
-            hubImage=gameci/hub:${{ github.event.inputs.repoVersionFull }}
-            baseImage=gameci/base:${{ github.event.inputs.repoVersionFull }}
+            hubImage=gameci/hub:ubuntu-${{ github.event.inputs.repoVersionFull }}
+            baseImage=gameci/base:ubuntu-${{ github.event.inputs.repoVersionFull }}
             version=${{ github.event.inputs.editorVersion }}
             changeSet=${{ github.event.inputs.changeSet }}
             module=${{ matrix.targetPlatform }}
@@ -155,8 +155,8 @@ jobs:
         with:
           file: ./images/ubuntu/editor/Dockerfile
           build-args: |
-            hubImage=gameci/hub:${{ github.event.inputs.repoVersionFull }}
-            baseImage=gameci/base:${{ github.event.inputs.repoVersionFull }}
+            hubImage=gameci/hub:ubuntu-${{ github.event.inputs.repoVersionFull }}
+            baseImage=gameci/base:ubuntu-${{ github.event.inputs.repoVersionFull }}
             version=${{ github.event.inputs.editorVersion }}
             changeSet=${{ github.event.inputs.changeSet }}
             module=${{ matrix.targetPlatform }}
