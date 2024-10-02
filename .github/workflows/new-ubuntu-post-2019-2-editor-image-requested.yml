@@ -71,18 +71,18 @@ jobs:
           echo "repoVersion (full): ${{ github.event.inputs.repoVersionFull }}"
           echo "repoVersion (only minor and major): ${{ github.event.inputs.repoVersionMinor }}"
           echo "repoVersion (only major): ${{ github.event.inputs.repoVersionMajor }}"
-      - name: Report new build
-        uses: ./.github/workflows/actions/report-to-backend
-        with:
-          token: ${{ secrets.VERSIONING_TOKEN }}
-          jobId: ${{ github.event.inputs.jobId }}
-          status: started
-          # Build info
-          imageType: editor
-          baseOs: ubuntu
-          repoVersion: ${{ github.event.inputs.repoVersionFull }}
-          editorVersion: ${{ github.event.inputs.editorVersion }}
-          targetPlatform: ${{ matrix.targetPlatform }}
+      # - name: Report new build
+      #   uses: ./.github/workflows/actions/report-to-backend
+      #   with:
+      #     token: ${{ secrets.VERSIONING_TOKEN }}
+      #     jobId: ${{ github.event.inputs.jobId }}
+      #     status: started
+      #     # Build info
+      #     imageType: editor
+      #     baseOs: ubuntu
+      #     repoVersion: ${{ github.event.inputs.repoVersionFull }}
+      #     editorVersion: ${{ github.event.inputs.editorVersion }}
+      #     targetPlatform: ${{ matrix.targetPlatform }}
       #############
       #   Setup   #
       #############
