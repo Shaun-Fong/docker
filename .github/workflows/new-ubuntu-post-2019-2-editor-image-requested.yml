@@ -186,40 +186,40 @@ jobs:
       #################
       #   reporting   #
       #################
-      - name: Report publication
-        if: ${{ success() }}
-        uses: ./.github/workflows/actions/report-to-backend
-        with:
-          token: ${{ secrets.VERSIONING_TOKEN }}
-          jobId: ${{ github.event.inputs.jobId }}
-          status: published
-          # Build info
-          imageType: editor
-          baseOs: ubuntu
-          repoVersion: ${{ github.event.inputs.repoVersionFull }}
-          editorVersion: ${{ github.event.inputs.editorVersion }}
-          targetPlatform: ${{ matrix.targetPlatform }}
-          # Publication info
-          imageRepo: unityci
-          imageName: editor
-          friendlyTag: ${{ github.event.inputs.repoVersionMinor }}
-          specificTag: ubuntu-${{ github.event.inputs.repoVersionFull }}
-          digest: ${{ steps.image-digest.outputs.digest }}
-      - name: Report failure
-        if: ${{ failure() || cancelled() }}
-        uses: ./.github/workflows/actions/report-to-backend
-        with:
-          token: ${{ secrets.VERSIONING_TOKEN }}
-          jobId: ${{ github.event.inputs.jobId }}
-          status: failed
-          # Build info
-          imageType: editor
-          baseOs: ubuntu
-          repoVersion: ${{ github.event.inputs.repoVersionFull }}
-          editorVersion: ${{ github.event.inputs.editorVersion }}
-          targetPlatform: ${{ matrix.targetPlatform }}
-          # Failure info
-          reason: ${{ job.status }} - ${{ steps.build_ubuntu_editor_image.outputs.metadata }}
+      # - name: Report publication
+      #   if: ${{ success() }}
+      #   uses: ./.github/workflows/actions/report-to-backend
+      #   with:
+      #     token: ${{ secrets.VERSIONING_TOKEN }}
+      #     jobId: ${{ github.event.inputs.jobId }}
+      #     status: published
+      #     # Build info
+      #     imageType: editor
+      #     baseOs: ubuntu
+      #     repoVersion: ${{ github.event.inputs.repoVersionFull }}
+      #     editorVersion: ${{ github.event.inputs.editorVersion }}
+      #     targetPlatform: ${{ matrix.targetPlatform }}
+      #     # Publication info
+      #     imageRepo: unityci
+      #     imageName: editor
+      #     friendlyTag: ${{ github.event.inputs.repoVersionMinor }}
+      #     specificTag: ubuntu-${{ github.event.inputs.repoVersionFull }}
+      #     digest: ${{ steps.image-digest.outputs.digest }}
+      # - name: Report failure
+      #   if: ${{ failure() || cancelled() }}
+      #   uses: ./.github/workflows/actions/report-to-backend
+      #   with:
+      #     token: ${{ secrets.VERSIONING_TOKEN }}
+      #     jobId: ${{ github.event.inputs.jobId }}
+      #     status: failed
+      #     # Build info
+      #     imageType: editor
+      #     baseOs: ubuntu
+      #     repoVersion: ${{ github.event.inputs.repoVersionFull }}
+      #     editorVersion: ${{ github.event.inputs.editorVersion }}
+      #     targetPlatform: ${{ matrix.targetPlatform }}
+      #     # Failure info
+      #     reason: ${{ job.status }} - ${{ steps.build_ubuntu_editor_image.outputs.metadata }}
       ###############
       #   Metrics   #
       ###############
