@@ -43,11 +43,11 @@ jobs:
         targetPlatform:
           - base # Base is a special name, which indicates that no modules are installed, like with linux-mono on ubuntu
           - linux-il2cpp
-          - windows-mono
-          - mac-mono
-          - ios
-          - android
-          - webgl
+          #- windows-mono
+          #- mac-mono
+          #- ios
+          #- android
+          #- webgl
     steps:
       - name: Checkout
         uses: actions/checkout@v4
