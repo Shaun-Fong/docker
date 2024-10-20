@@ -41,12 +41,12 @@ jobs:
       fail-fast: false
       matrix:
         targetPlatform:
-          #- base
-          #- windows-il2cpp
+          - base
+          - windows-il2cpp
           #- universal-windows-platform
           #- appletv
           #- android
-          - webgl
+          #- webgl
           # - lumin # TODO: Determine if we can build for lumin. Requires 3rd party SDK with several versions
 
     steps:
